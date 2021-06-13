@@ -1,4 +1,4 @@
-package com.worldweatheronline.android.data.remote;
+package com.worldweatheronline.android.data.model.api;
 
 public class ValueField {
     private String mValue;

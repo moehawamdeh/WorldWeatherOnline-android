@@ -1,4 +1,4 @@
-package com.worldweatheronline.android.data.remote;
+package com.worldweatheronline.android.data.model.api;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
