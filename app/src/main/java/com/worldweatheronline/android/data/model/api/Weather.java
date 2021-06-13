@@ -1,4 +1,4 @@
-package com.worldweatheronline.android.data.model;
+package com.worldweatheronline.android.data.model.api;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -30,6 +30,7 @@ public class Weather {
     public void setHourlyList(List<WeatherCondition> hourlyList) {
         mHourlyList = hourlyList;
     }
+
 
 
     //    public List<Astronomy> astronomy;

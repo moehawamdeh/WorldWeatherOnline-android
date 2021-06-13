@@ -1,4 +1,4 @@
-package com.worldweatheronline.android.data.remote;
+package com.worldweatheronline.android.data.model.api;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -14,7 +14,6 @@ public class WeatherApiResponse {
     @SerializedName("request")
     @Expose
     private Request mRequest;
-
 
     public ApiData getData() {
         return mData;

@@ -1,11 +1,13 @@
-package com.worldweatheronline.android.data.model;
+package com.worldweatheronline.android.data.model.api;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class WeatherCondition {
+import io.realm.RealmList;
+import io.realm.RealmObject;
+public class WeatherCondition extends RealmObject {
     @SerializedName(value="time", alternate={"observation_time"})
     @Expose
     private String mTime;
@@ -20,13 +22,13 @@ public class WeatherCondition {
     private String mWeatherCode;
     @SerializedName("weatherIconUrl")
     @Expose
-    private List<WeatherIconUrl> mWeatherIconUrl;
+    private RealmList<WeatherIconUrl> mWeatherIconUrl;
     @SerializedName("weatherDesc")
     @Expose
-    private List<WeatherDesc> mWeatherDesc;
+    private RealmList<WeatherDesc> mWeatherDesc;
     @SerializedName("lang_ar")
     @Expose
-    private List<LangAr> mArabicDesc;
+    private RealmList<LangAr> mArabicDesc;
 
     public String getTime() {
         return mTime;
@@ -64,7 +66,7 @@ public class WeatherCondition {
         return mWeatherIconUrl;
     }
 
-    public void setWeatherIconUrl(List<WeatherIconUrl> weatherIconUrl) {
+    public void setWeatherIconUrl(RealmList<WeatherIconUrl> weatherIconUrl) {
         mWeatherIconUrl = weatherIconUrl;
     }
 
@@ -72,7 +74,7 @@ public class WeatherCondition {
         return mWeatherDesc;
     }
 
-    public void setWeatherDesc(List<WeatherDesc> weatherDesc) {
+    public void setWeatherDesc(RealmList<WeatherDesc> weatherDesc) {
         mWeatherDesc = weatherDesc;
     }
 
@@ -80,7 +82,7 @@ public class WeatherCondition {
         return mArabicDesc;
     }
 
-    public void setArabicDesc(List<LangAr> arabicDesc) {
+    public void setArabicDesc(RealmList<LangAr> arabicDesc) {
         mArabicDesc = arabicDesc;
     }
 }

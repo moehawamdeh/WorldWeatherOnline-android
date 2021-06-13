@@ -1,9 +1,7 @@
-package com.worldweatheronline.android.data.remote;
+package com.worldweatheronline.android.data.model.api;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.worldweatheronline.android.data.model.Weather;
-import com.worldweatheronline.android.data.model.WeatherCondition;
 
 import java.util.List;
 

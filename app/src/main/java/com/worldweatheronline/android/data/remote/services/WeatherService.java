@@ -1,6 +1,6 @@
 package com.worldweatheronline.android.data.remote.services;
 
-import com.worldweatheronline.android.data.remote.WeatherApiResponse;
+import com.worldweatheronline.android.data.model.api.WeatherApiResponse;
 
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;

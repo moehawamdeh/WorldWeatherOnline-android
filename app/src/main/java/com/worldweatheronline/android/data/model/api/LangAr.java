@@ -1,9 +1,11 @@
-package com.worldweatheronline.android.data.model;
+package com.worldweatheronline.android.data.model.api;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LangAr{
+import io.realm.RealmObject;
+
+public class LangAr extends RealmObject {
     @SerializedName("value")
     @Expose
     private String mValue;

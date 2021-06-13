@@ -7,4 +7,5 @@ public class Constants {
     public static final String COMPACT_DATE_FORMAT= "MM-dd";
 
     public static final String WWO_BASE_URL= "https://api.worldweatheronline.com/premium/v1/";
+    public static final String[] defaultCities  = {"Amman","Irbid","Akaba"};
 }
