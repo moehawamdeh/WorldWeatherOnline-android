@@ -15,7 +15,7 @@ public interface AutoCompleteService {
      *
      */
     @GET("search.ashx?num_of_results=5")
-    Observable<WeatherApiResponse> getTop5Suggestions(@Query("q") String query);
+    Observable<AutoCompleteApiResponse> getTop5Suggestions(@Query("q") String query);
 
     /**
      * Search for worldwide city/town/etc
@@ -23,7 +23,7 @@ public interface AutoCompleteService {
      * @return Observable of ApiResponse
      *
      */
-    @GET("search.ashx?num_of_results=1")
+    @GET("search.ashx?num_of_results=3")
     Observable<AutoCompleteApiResponse> getCity(@Query("q") String query);
 
 

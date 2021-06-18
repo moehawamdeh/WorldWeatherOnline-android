@@ -12,7 +12,7 @@ public class AutoCompleteApiResponse {
     //only returned in case of errors exist
     @SerializedName("data")
     @Expose
-    private ApiData mData;
+    private WeatherData mData;
 
     @SerializedName("search_api")
     @Expose
@@ -20,11 +20,11 @@ public class AutoCompleteApiResponse {
 
 
 
-    public ApiData getData() {
+    public WeatherData getData() {
         return mData;
     }
 
-    public void setData(ApiData data) {
+    public void setData(WeatherData data) {
         mData = data;
     }
 
@@ -39,25 +39,73 @@ public class AutoCompleteApiResponse {
     public static class ResultData{
         @SerializedName("result")
         @Expose
-        public List<Result> mResult;
+        private List<Result> mResult;
+
+        public List<Result> getResult() {
+            return mResult;
+        }
+
+        public void setResult(List<Result> result) {
+            mResult = result;
+        }
     }
 
     public static class Result{
         @SerializedName("areaName")
         @Expose
-        public List<ValueField> areaName;
+        private List<ValueField> areaName;
         @SerializedName("country")
         @Expose
-        public List<ValueField> country;
+        private List<ValueField> country;
         @SerializedName("region")
         @Expose
-        public List<ValueField> region;
+        private List<ValueField> region;
         @SerializedName("latitude")
         @Expose
-        public String latitude;
+        private String latitude;
         @SerializedName("longitude")
         @Expose
-        public String longitude;
+        private String longitude;
+
+        public List<ValueField> getAreaName() {
+            return areaName;
+        }
+
+        public void setAreaName(List<ValueField> areaName) {
+            this.areaName = areaName;
+        }
+
+        public List<ValueField> getCountry() {
+            return country;
+        }
+
+        public void setCountry(List<ValueField> country) {
+            this.country = country;
+        }
+
+        public List<ValueField> getRegion() {
+            return region;
+        }
+
+        public void setRegion(List<ValueField> region) {
+            this.region = region;
+        }
+
+        public String getLatitude() {
+            return latitude;
+        }
+
+        public void setLatitude(String latitude) {
+            this.latitude = latitude;
+        }
+
+        public String getLongitude() {
+            return longitude;
+        }
+
+        public void setLongitude(String longitude) {
+            this.longitude = longitude;
+        }
     }
 
 }

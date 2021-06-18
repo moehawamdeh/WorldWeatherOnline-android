@@ -22,7 +22,7 @@ public interface WeatherService {
      * @return Observable of ApiResponse
      * default query params: (tp=4 => 4hours intervals), (cc=no => remove current condition)
      */
-    @GET("weather.ashx?tp=4&cc=no&&num_of_days=14")
+        @GET("weather.ashx?tp=4&cc=no&&num_of_days=14")
     Observable<WeatherApiResponse> getTwoWeeksForecast(@Query("q") String query);
 
 

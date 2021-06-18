@@ -19,11 +19,11 @@ public class City extends RealmObject {
     public void setLocationID() {
         StringBuilder builder=new StringBuilder();
         //Id = ($latitude, $longitude)
-        mLocationID= builder.append('(')
+        mLocationID=
+                builder
                 .append(mLocation.getLatitude())
                 .append(", ")
                 .append(mLocation.getLongitude())
-                .append(')')
                 .toString();
     }
 

@@ -5,31 +5,36 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ApiData {
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
+
+public class WeatherData extends RealmObject {
 
     @SerializedName("current_condition")
     @Expose
-    private List<WeatherCondition> mCurrentConditions;
+    private RealmList<WeatherCondition> mCurrentConditions;
     @SerializedName("error")
     @Expose
+    @Ignore
     private List<ApiError> mErrors;
     @SerializedName("weather")
     @Expose
-    private List<Weather> mWeather;
+    private RealmList<Weather> mWeather;
 
 
-    public List<WeatherCondition> getCurrentConditions() {
+    public RealmList<WeatherCondition> getCurrentConditions() {
         return mCurrentConditions;
     }
 
-    public void setCurrentConditions(List<WeatherCondition> currentConditions) {
+    public void setCurrentConditions(RealmList<WeatherCondition> currentConditions) {
         mCurrentConditions = currentConditions;
     }
-    public List<Weather> getWeather() {
+    public RealmList<Weather> getWeather() {
         return mWeather;
     }
 
-    public void setWeather(List<Weather> weather) {
+    public void setWeather(RealmList<Weather> weather) {
         mWeather = weather;
     }
 
@@ -37,7 +42,7 @@ public class ApiData {
         return mErrors;
     }
 
-    public void setErrors(List<ApiError> errors) {
+    public void setErrors(RealmList<ApiError> errors) {
         mErrors = errors;
     }
 }
