@@ -5,7 +5,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Weather {
+import io.realm.Realm;
+import io.realm.RealmList;
+import io.realm.RealmObject;
+
+public class Weather extends RealmObject {
 
     @SerializedName("date")
     @Expose
@@ -13,7 +17,7 @@ public class Weather {
 
     @SerializedName("hourly")
     @Expose
-    private List<WeatherCondition> mHourlyList;
+    private RealmList<WeatherCondition> mHourlyList;
 
     public String getDate() {
         return mDate;
@@ -23,11 +27,11 @@ public class Weather {
         mDate = date;
     }
 
-    public List<WeatherCondition> getHourlyList() {
+    public RealmList<WeatherCondition> getHourlyList() {
         return mHourlyList;
     }
 
-    public void setHourlyList(List<WeatherCondition> hourlyList) {
+    public void setHourlyList(RealmList<WeatherCondition> hourlyList) {
         mHourlyList = hourlyList;
     }
 

@@ -11,10 +11,10 @@ public class WeatherCondition extends RealmObject {
     @SerializedName(value="time", alternate={"observation_time"})
     @Expose
     private String mTime;
-    @SerializedName("temp_C")
+    @SerializedName(value = "temp_C", alternate = {"tempC"})
     @Expose
     private String mTempC;
-    @SerializedName("temp_F")
+    @SerializedName(value= "temp_F", alternate = {"tempF"})
     @Expose
     private String mTempF;
     @SerializedName("weatherCode")

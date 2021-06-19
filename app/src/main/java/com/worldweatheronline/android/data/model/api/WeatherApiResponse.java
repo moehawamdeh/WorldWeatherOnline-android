@@ -9,17 +9,17 @@ import com.google.gson.annotations.SerializedName;
 public class WeatherApiResponse {
     @SerializedName("data")
     @Expose
-    private ApiData mData;
+    private WeatherData mData;
 
     @SerializedName("request")
     @Expose
     private Request mRequest;
 
-    public ApiData getData() {
+    public WeatherData getData() {
         return mData;
     }
 
-    public void setData(ApiData data) {
+    public void setData(WeatherData data) {
         mData = data;
     }
 

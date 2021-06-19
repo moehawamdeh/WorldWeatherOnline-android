@@ -1,6 +1,13 @@
 package com.worldweatheronline.android.data.model.api;
 
-public class ValueField {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import io.realm.RealmObject;
+
+public class ValueField extends RealmObject {
+    @SerializedName("value")
+    @Expose
     private String mValue;
 
     public String getValue() {

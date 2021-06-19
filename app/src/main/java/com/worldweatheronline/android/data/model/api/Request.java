@@ -3,7 +3,9 @@ package com.worldweatheronline.android.data.model.api;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Request {
+import io.realm.RealmObject;
+
+public class Request extends RealmObject {
     @SerializedName("type")
     @Expose
     private String mType;
@@ -17,5 +19,13 @@ public class Request {
 
     public void setType(String type) {
         mType = type;
+    }
+
+    public String getQuery() {
+        return mQuery;
+    }
+
+    public void setQuery(String query) {
+        mQuery = query;
     }
 }

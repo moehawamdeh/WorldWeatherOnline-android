@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">WorldWeatherOnline - Android</string>
+    <string name="pick_your_city">Pick your city</string>
+    <string name="weather_for_14_days">Weather for 14 days</string>
+    <string name="whatever">Whatever</string>
 </resources>
