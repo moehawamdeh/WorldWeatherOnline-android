@@ -14,12 +14,9 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -29,7 +26,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.gson.Gson;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.worldweatheronline.android.R;
 import com.worldweatheronline.android.data.model.api.Weather;
@@ -97,17 +93,15 @@ public class DashboardActivity extends AppCompatActivity {
         DynamicAutoCompleteTextView autocompleteView = findViewById(R.id.auto_complete_cities);
         ImageButton imageButton= findViewById(R.id.button_location
         );
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(
-                        DashboardActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) ==
-                        PackageManager.PERMISSION_GRANTED) {
-                   getLocation();
-                } else {
-                    requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
-            }
-        }});
+        imageButton.setOnClickListener(v -> {
+            if (ContextCompat.checkSelfPermission(
+                    DashboardActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) ==
+                    PackageManager.PERMISSION_GRANTED) {
+               getLocation();
+            } else {
+                requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
+        }
+    });
         autocompleteView.setOnItemClickListener((parent, view, position, id) -> {
             mDashboardVM.selectCity(position);
             autocompleteView.setText(mAdapter.getItem(position),false);
@@ -138,17 +132,23 @@ public class DashboardActivity extends AppCompatActivity {
         animationDrawable.setEnterFadeDuration(2000);
         animationDrawable.setExitFadeDuration(4000);
         animationDrawable.start();
-
     }
     void getLocation() {
         try {
             mLocationManager = (LocationManager)getApplicationContext().getSystemService(LOCATION_SERVICE);
-            String provider = mLocationManager.getBestProvider(new Criteria(),true);
             List<String> providers = mLocationManager.getProviders(true);
-            Location location =mLocationManager.getLastKnownLocation(provider);
+            Location location = null;
+            for(String provider : providers) {
+                Location locationOption = mLocationManager.getLastKnownLocation(provider);
+                if(locationOption!=null){
+                    if(location==null || location.getAccuracy() < locationOption.getAccuracy())
+                        location=locationOption;
+                }
+            }
 
             if(location==null) {
-                //TODO stop loading and show error msg
+                //TODO stop loading and show error msg//////////////
+                Toast.makeText(DashboardActivity.this,"Couldn't detect your location",Toast.LENGTH_LONG).show();
                 return;
             }
             double longitude = location.getLongitude();
@@ -175,7 +175,9 @@ public class DashboardActivity extends AppCompatActivity {
     private void onWeatherChanged(CityWeather cityWeather) {
         if(cityWeather.getCurrentCondition()!=null) {
             mTextTemp.setText(cityWeather.getCurrentCondition().getTempC());
-            mTextCity.setText(cityWeather.getCity().getAreaName());
+            if(cityWeather.getCity()!=null)
+                mTextCity.setText(cityWeather.getCity().getAreaName());
+
             mTextDescription.setText(cityWeather.getCurrentCondition().getWeatherDesc().get(0).value);
 
             //TODO extract utility
@@ -195,6 +197,8 @@ public class DashboardActivity extends AppCompatActivity {
 
             List<String> s = cities.stream().filter(Objects::nonNull).map(city -> city.getAreaName() + ' ' + city.getRegion() + ' ' + city.getCountry()).collect(Collectors.toList());
         if(cities.size()>0) {
+            if(cities.size()==1) //no need to show option
+                mDashboardVM.selectCity(0);
             DynamicAutoCompleteTextView autocompleteView = findViewById(R.id.auto_complete_cities);
             mAdapter = new ArrayAdapter<String>(DashboardActivity.this, R.layout.search_list_item, s);
             autocompleteView.setAdapter(mAdapter);

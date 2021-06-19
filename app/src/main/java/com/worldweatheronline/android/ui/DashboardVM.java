@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.worldweatheronline.android.data.model.api.Weather;
-import com.worldweatheronline.android.data.model.api.WeatherCondition;
 import com.worldweatheronline.android.data.model.entities.City;
 import com.worldweatheronline.android.data.model.entities.CityTwoWeeksForecast;
 import com.worldweatheronline.android.data.model.entities.CityWeather;
@@ -16,8 +15,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
-import io.realm.RealmChangeListener;
-import io.realm.RealmResults;
 
 @HiltViewModel
 public class DashboardVM extends ViewModel {
@@ -80,6 +77,9 @@ public class DashboardVM extends ViewModel {
         return mTwoWeeksList;
     }
 
-    public void selectCity(double longitude, double latitude) {
+        public void selectCity(double longitude, double latitude) {
+            String queryLatLon=latitude+", "+longitude;
+        searchCities(queryLatLon);
+
     }
 }
