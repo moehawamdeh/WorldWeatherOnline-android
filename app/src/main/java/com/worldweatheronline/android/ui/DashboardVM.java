@@ -79,4 +79,7 @@ public class DashboardVM extends ViewModel {
     public MutableLiveData<List<Weather>> getTwoWeeksList() {
         return mTwoWeeksList;
     }
+
+    public void selectCity(double longitude, double latitude) {
+    }
 }

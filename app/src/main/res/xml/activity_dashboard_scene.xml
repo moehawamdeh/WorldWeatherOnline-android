@@ -65,8 +65,18 @@
             motion:layout_constraintStart_toStartOf="parent"
             android:id="@+id/label_forecast"
             motion:layout_constraintEnd_toEndOf="parent"
-            motion:layout_constraintHorizontal_bias="0.498"
-            motion:layout_constraintTop_toBottomOf="@+id/text_temprature" />
+            motion:layout_constraintHorizontal_bias="0.0"
+            motion:layout_constraintTop_toBottomOf="@+id/text_weather_descs" />
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:id="@+id/text_weather_descs"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/text_temprature"
+            android:visibility="visible"
+            motion:layout_constraintStart_toStartOf="@+id/image_weather_icon"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -97,7 +107,28 @@
             android:id="@+id/label_forecast"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toBottomOf="@+id/text_temprature" />
+            motion:layout_constraintHorizontal_bias="1.0"
+            motion:layout_constraintTop_toBottomOf="@+id/text_weather_descs" />
+        <Constraint
+            android:layout_height="wrap_content"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:id="@+id/text_weather_descs"
+            motion:layout_constraintTop_toBottomOf="@+id/text_temprature"
+            android:visibility="visible"
+            motion:layout_constraintStart_toStartOf="@+id/image_weather_icon"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp" />
+        <Constraint
+            android:layout_height="wrap_content"
+            motion:layout_constraintEnd_toStartOf="@+id/image_weather_icon"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5"
+            android:layout_width="0dp"
+            android:id="@+id/text_temprature"
+            motion:layout_constraintTop_toBottomOf="@+id/auto_complete_menu"
+            motion:layout_constraintVertical_bias="0.0" />
     </ConstraintSet>
 
 </MotionScene>

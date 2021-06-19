@@ -48,6 +48,7 @@ public class WWORepository {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(throwable -> {
+                    mRealm.cancelTransaction();
                     Log.i("REPO_INIT", "Error", throwable);
                 })
                 .subscribe(results -> {
@@ -83,7 +84,7 @@ public class WWORepository {
                 .findAllAsync();
     }
 
-    public void getTop5AutoCompletes(String query) {
+    public synchronized void getTop5AutoCompletes(String query) {
 
         mAutoCompleteService.getTop5Suggestions(query)
                 .subscribeOn(Schedulers.io())
@@ -108,9 +109,9 @@ public class WWORepository {
 
                     mRealm.insertOrUpdate(list);
                     mRealm.commitTransaction();
-
                 }, error -> {
                     Log.i("REPO_INIT", "Error", error);
+                    mRealm.cancelTransaction();
                 });
 
 

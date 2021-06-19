@@ -72,7 +72,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/auto_complete_menu"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/pick_your_city"
@@ -130,14 +130,28 @@
         app:tint="@color/white" />
 
     <TextView
+        android:id="@+id/text_weather_descs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="16dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:paddingHorizontal="16dp"
+        android:shadowColor="#2C000000"
+        android:shadowRadius="8"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="95dp"
+        tools:layout_editor_absoluteY="228dp" />
+
+    <TextView
         android:id="@+id/label_forecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#36000000"
         android:elevation="16dp"
         android:padding="8dp"
         android:paddingHorizontal="16dp"
         android:shadowColor="#2C000000"
-        android:background="#36000000"
         android:shadowRadius="8"
         android:text="@string/weather_for_14_days"
         android:textColor="@color/white"

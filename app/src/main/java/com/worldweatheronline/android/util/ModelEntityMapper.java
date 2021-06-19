@@ -28,6 +28,19 @@ public class ModelEntityMapper {
         city.setLocationID();
         return city;
     }
+    public static City mapResultToCity(AutoCompleteApiResponse.Result result){
+
+
+        if(result==null)
+            return null;
+        City city = new City();
+        city.setAreaName(result.getAreaName().get(0).getValue());
+        city.setCountry(result.getCountry().get(0).getValue());
+        city.setRegion(result.getRegion().get(0).getValue());
+        city.setLocation(result.getLatitude(),result.getLongitude());
+        city.setLocationID();
+        return city;
+    }
     public static CityWeather mapWeatherDataToCityWeather(WeatherData data,City city){
         CityWeather weather = new CityWeather();
         weather.setCurrentCondition(data.getCurrentConditions().get(0));

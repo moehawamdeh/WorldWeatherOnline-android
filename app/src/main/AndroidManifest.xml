@@ -3,7 +3,8 @@
     package="com.worldweatheronline.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <application
         android:name=".WeatherApp"
         android:allowBackup="false"
@@ -22,6 +23,7 @@
         <activity android:name=".ui.modules.dashboard.DashboardActivity">
 
         </activity>
+
     </application>
 
 </manifest>

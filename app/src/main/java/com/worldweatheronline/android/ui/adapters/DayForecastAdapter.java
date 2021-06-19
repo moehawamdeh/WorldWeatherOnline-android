@@ -10,15 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.worldweatheronline.android.R;
 import com.worldweatheronline.android.data.model.api.Weather;
 import com.worldweatheronline.android.data.model.entities.CityTwoWeeksForecast;
+import com.worldweatheronline.android.helper.IconsMappingHelper;
 import com.worldweatheronline.android.ui.adapters.viewholder.DayForecastHolder;
 
 import java.util.List;
 
-public class DayForecastAdapter extends RecyclerView.Adapter<DayForecastHolder> {
+import javax.inject.Inject;
 
+
+public class DayForecastAdapter extends RecyclerView.Adapter<DayForecastHolder> {
+    IconsMappingHelper mIconsMapper;
     private List<Weather> localDataSet;
 
-    public DayForecastAdapter(List<Weather> dataSet) {
+    public DayForecastAdapter(List<Weather> dataSet,IconsMappingHelper helper) {
+        mIconsMapper=helper;
         localDataSet = dataSet;
     }
 
@@ -29,7 +34,7 @@ public class DayForecastAdapter extends RecyclerView.Adapter<DayForecastHolder> 
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.day_forecast_list_item, viewGroup, false);
 
-        return new DayForecastHolder(view);
+        return new DayForecastHolder(view, mIconsMapper);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -38,7 +43,7 @@ public class DayForecastAdapter extends RecyclerView.Adapter<DayForecastHolder> 
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.setTemp(localDataSet.get(position).getDate());
+        viewHolder.setWeather(localDataSet.get(position));
     }
 
     // Return the size of your dataset (invoked by the layout manager)

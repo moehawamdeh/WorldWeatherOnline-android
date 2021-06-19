@@ -2,6 +2,8 @@ package com.worldweatheronline.android.util;
 
 import android.content.Context;
 
+import com.worldweatheronline.android.Constants;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,12 +20,12 @@ public class LocalParser {
     public static String loadJSONFromAsset(Context context) {
         String json = null;
         try {
-            InputStream is = context.getAssets().open("wwo_codes_to_ic.json");
+            InputStream is = context.getAssets().open(Constants.WWO_CODES_PATH);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
-            json = new String(buffer, "UTF-8");
+            json = new String(buffer, Constants.CHARSET);
         } catch (IOException ex) {
             ex.printStackTrace();
             return null;

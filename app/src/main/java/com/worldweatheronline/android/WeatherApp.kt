@@ -17,8 +17,10 @@ class WeatherApp : Application(){
                 .build()
         Realm.setDefaultConfiguration(config)
 //        TODO remove this, only for debug
-        Realm.deleteRealm(config)
+//        Realm.deleteRealm(config)
 
     }
+
+
 
 }
