@@ -2,7 +2,7 @@ package com.worldweatheronline.android.data.repository;
 
 import android.util.Log;
 
-import com.worldweatheronline.android.data.model.api.AutoCompleteApiResponse;
+import com.worldweatheronline.android.data.model.api.ApiError;
 import com.worldweatheronline.android.data.model.entities.City;
 import com.worldweatheronline.android.data.model.entities.CityTwoWeeksForecast;
 import com.worldweatheronline.android.data.model.entities.CityWeather;
@@ -11,7 +11,6 @@ import com.worldweatheronline.android.data.remote.services.WeatherService;
 import com.worldweatheronline.android.util.ModelEntityMapper;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
@@ -78,8 +77,7 @@ public class WWORepository {
     }
 
     public RealmResults<City> getCities() {
-        Realm realm = Realm.getDefaultInstance();
-        return realm
+        return mRealm
                 .where(City.class)
                 .findAllAsync();
     }
@@ -90,6 +88,12 @@ public class WWORepository {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
+                    if(response.getData()!=null)
+                    {
+                        List<ApiError>errors=response.getData().getErrors();
+                        if(errors!=null && errors.size()>0)
+                            return; //TODO pass & handle error with observers
+                    }
 
                     List<City> newCities = response
                             .getResult()
@@ -129,7 +133,7 @@ public class WWORepository {
 
                         }
                         , error -> Log.e("WEATHER_FETCH", "Error fetching weather for " + city.getLocationID(), error));
-        return mRealm.where(CityWeather.class).equalTo("mLocationID", city.getLocationID()).limit(1).findAll();
+        return mRealm.where(CityWeather.class).equalTo("mLocationID", city.getLocationID()).limit(1).findAllAsync();
 
     }
 
