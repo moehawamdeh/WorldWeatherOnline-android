@@ -1,8 +1,8 @@
 # WorldWeatherOnline-android
 Android mobile client for WorldWeatherOnline
 
-#Getting started
-Create
+## Getting started
+
 1. get an API key from [WorldWeatherOnline](https://github.com/moehawamdeh/WorldWeatherOnline-android)
 2. create a new file and name it ``apikeys.properties``
 the file contents should look like below
