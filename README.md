@@ -1,5 +1,5 @@
 # WorldWeatherOnline-android
-Android mobile clientfor WorldWeatherOnline
+Android mobile client for WorldWeatherOnline
 
 
 
