@@ -55,7 +55,7 @@ public class WWORepository {
                     List<City> cities = results.stream().map(ModelEntityMapper::mapResultToCity).collect(Collectors.toList());
                     //if one fails, all fai
                     realm.beginTransaction();
-                    realm.insert(cities);
+                    realm.insertOrUpdate(cities);
                     realm.commitTransaction();
 
                     //create forecast for them
@@ -66,7 +66,7 @@ public class WWORepository {
                                             new CityTwoWeeksForecast(city.getLocationID()))
                                     .collect(Collectors.toList());
                     realm.beginTransaction();
-                    realm.insert(forecasts);
+                    realm.insertOrUpdate(forecasts);
                     realm.commitTransaction();
 
 
@@ -99,7 +99,7 @@ public class WWORepository {
                             .collect(Collectors.toList());
                     mRealm.beginTransaction();
                     mRealm.where(City.class).findAll().deleteAllFromRealm();
-                    mRealm.insert(newCities);
+                    mRealm.insertOrUpdate(newCities);
                     //create empty city weather object too
                     List<CityWeather> list = newCities.stream().map(city -> {
                         CityWeather weather = new CityWeather();
@@ -133,10 +133,21 @@ public class WWORepository {
 
     }
 
-    public void getWeatherSummary(String cityID) {
-        getWeatherSummary(Objects.requireNonNull(mRealm.where(City.class).equalTo("mLocationID", cityID).findFirst()));
-
-    }
+//    public void getWeatherSummary(String cityID) {
+//        mWeatherService.getCurrentSummary(city.getLocationID())
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(res -> {
+//                            CityWeather weather = ModelEntityMapper.mapWeatherDataToCityWeather(res.getData(), city);
+//                            mRealm.beginTransaction();
+//                            mRealm.insertOrUpdate(weather);
+//                            mRealm.commitTransaction();
+//                        }
+//                        , error -> Log.e("WEATHER_FETCH", "Error fetching weather for " + city.getLocationID(), error));
+//        return mRealm.where(CityWeather.class).equalTo("mLocationID", city.getLocationID()).limit(1).findAll();
+//
+//
+//    }
 
     public CityTwoWeeksForecast getTwoWeeksForecast(City city) {
         mWeatherService.getTwoWeeksForecast(city.getLocationID())
